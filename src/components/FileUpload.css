@@ -1,0 +1,77 @@
+.file-upload {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-upload input[type='file'] {
+    margin-bottom: .5rem;
+}
+
+.file-info p {
+    font-size: 1rem;
+}
+
+.customer-data-table {
+    border-collapse: collapse;
+    margin: 1rem .8rem;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+}
+
+.customer-data-table thead tr {
+    background-color: #61DBFB;
+    color: #ffffff;
+    text-align: left;
+}
+
+.customer-data-table th,
+.customer-data-table td {
+    padding: .2rem .5rem;
+}
+
+.customer-data-table tbody tr {
+    border-bottom: thin solid #dddddd;
+    text-align: left;
+}
+
+.customer-data-table tbody tr:nth-of-type(even) {
+    background-color: #3e4451;
+}
+
+.customer-data-table tbody tr:last-of-type {
+    border-bottom: thick solid #61DBFB;
+}
+
+@media only screen and (max-width: 768px), (min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr { border: 1px solid #ccc; }
+
+	td {
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 50%;
+	}
+
+	td:before {
+		position: absolute;
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+	}
+}
