@@ -9,7 +9,7 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:9000](http://localhost:9000) to view it in your browser.
+Open [http://localhost:9001](http://localhost:9001) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
@@ -21,21 +21,21 @@ Launches the test runner in the interactive watch mode.\
 
 ## Example Usage:
 
-### Navigate to outdoor.sy_client directory
+* navigate to outdoor.sy_client directory
 
-### run 'npm start'
+* run 'npm start'
 
-### navigate to Local port (ex: http://localhost:9000)
+* navigate to Local port (ex: [http://localhost:9001](http://localhost:9001))
 
-### Choose file to upload
-Can be either a text/plain file or text/csv (without header row)
+* choose file to upload
+    * can be either a text/plain file or text/csv (without header row)
 
-#### Click "Upload File" when desired file selected
+* click "Upload File" when desired file selected
 
-### With resulting table...
+* with resulting table...
 
-Defaults to sort based on name
+    * defaults to sort based on name
 
-Clicking on <th>'s will change sorting
+    * clicking on th's will change sorting
 
-Clicking on current sort's <th> will reverse the sort
+        * clicking on current sort's th will reverse the sort
