@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './dockwa-logo.png';
 import './App.css';
 import FileUpload from './components/FileUpload';
 
