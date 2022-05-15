@@ -1,5 +1,6 @@
 import {Component} from "react";
 import './FileUpload.css';
+import CustomerTable from "./CustomerTable";
 
 export default class FileUpload extends Component {
 
@@ -17,6 +18,8 @@ export default class FileUpload extends Component {
     onFileSubmit = () => {
         let react = this;
         let fileData = new FormData();
+        let frankenArray = [];
+
         fileData.append("customerFile", this.state.file);
 
             fetch("http://localhost:3000/api/v1/customer",
@@ -26,11 +29,12 @@ export default class FileUpload extends Component {
             })
             .then(response => response.json())
             .then(function(response) {
+                frankenArray = react.state.customerInfo !== null ? react.state.customerInfo.concat(response) : response;
                 react.setState({
-                    customerInfo: response
+                    customerInfo: frankenArray
                 });
-            });
 
+            });
     }
 
     render() {
@@ -50,30 +54,7 @@ export default class FileUpload extends Component {
                     </div>
                 }
                 { this.state.customerInfo !== null &&
-                    <table className="customer-data-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Vehicle Type</th>
-                                <th>Vehicle Name</th>
-                                <th>Vehicle Length (ft)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.state.customerInfo.map(customer => {
-                                    return <tr key={customer.email}>
-                                        <td>{ customer.name }</td>
-                                        <td>{ customer.email }</td>
-                                        <td>{ customer.vehicle.type }</td>
-                                        <td>{ customer.vehicle.name }</td>
-                                        <td>{ parseInt(customer.vehicle.length) }</td>
-                                    </tr>
-                                })
-                            }
-                        </tbody>
-                    </table>
+                    <CustomerTable customerInfo={this.state.customerInfo}/>
                 }
             </div>
         );
