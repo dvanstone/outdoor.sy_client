@@ -4,16 +4,26 @@ import './CustomerTable.css';
 export default class CustomerTable extends Component {
 
     state = {
-        sort: "name",
-        customerInfoSorted: null
+        sort: "",
+        customerInfoSorted: this.props.customerInfo
+    };
+
+    componentDidUpdate(prevProps) {
+        if (this.props.customerInfo.length !== prevProps.customerInfo.length) {
+            this.setState({
+                customerInfoSorted: this.sortArray(this.state.sort)
+            });
+        }
     }
 
     onSort = event => {
         if (this.state.sort !== event.target.id) {
             this.setState({
                 sort: event.target.id
-            })
-            this.sortArray(event.target.id);
+            });
+            this.setState({
+                customerInfoSorted: this.sortArray(event.target.id)
+            });
         } else {
             var arrayCopy = this.state.customerInfoSorted != null ? this.state.customerInfoSorted.reverse() : this.props.customerInfo.reverse();
             this.setState({
@@ -23,71 +33,72 @@ export default class CustomerTable extends Component {
     }
 
     sortArray = (sort) => {
-        var tempArray = this.state.customerInfoSorted != null ? this.state.customerInfoSorted : this.props.customerInfo;
-        this.setState({
-            customerInfoSorted: tempArray.sort(function(a, b) {
-                switch(sort) {
-                    case "email":
-                        const emailA = a.email.toUpperCase();
-                        const emailB = b.email.toUpperCase();
+        var tempArray = this.props.customerInfo;
 
-                        if (emailA < emailB) {
-                            return -1;
-                        } else if (emailA > emailB) {
-                            return 1;
-                        } else {
-                            return 0;
-                        }
+        tempArray.sort(function(a, b) {
+            switch(sort) {
+                case "email":
+                    const emailA = a.email.toUpperCase().trim();
+                    const emailB = b.email.toUpperCase().trim();
 
-                    case "vehicleType":
-                        const vehicleTypeA = a.vehicle.type.toUpperCase();
-                        const vehicleTypeB = b.vehicle.type.toUpperCase();
+                    if (emailA < emailB) {
+                        return -1;
+                    } else if (emailA > emailB) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
 
-                        if (vehicleTypeA < vehicleTypeB) {
-                            return -1;
-                        } else if (vehicleTypeA > vehicleTypeB) {
-                            return 1;
-                        } else {
-                            return 0;
-                        }
+                case "vehicleType":
+                    const vehicleTypeA = a.vehicle.type.toUpperCase().trim();
+                    const vehicleTypeB = b.vehicle.type.toUpperCase().trim();
 
-                    case "vehicleName":
-                        const vehicleNameA = a.vehicle.name.toUpperCase();
-                        const vehicleNameB = b.vehicle.name.toUpperCase();
+                    if (vehicleTypeA < vehicleTypeB) {
+                        return -1;
+                    } else if (vehicleTypeA > vehicleTypeB) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
 
-                        if (vehicleNameA < vehicleNameB) {
-                            return -1;
-                        } else if (vehicleNameA > vehicleNameB) {
-                            return 1;
-                        } else {
-                            return 0;
-                        }
+                case "vehicleName":
+                    const vehicleNameA = a.vehicle.name.toUpperCase().trim();
+                    const vehicleNameB = b.vehicle.name.toUpperCase().trim();
 
-                    case "vehicleLength":
-                        const vehicleLengthA = a.vehicle.length;
-                        const vehicleLengthB = b.vehicle.length;
+                    if (vehicleNameA < vehicleNameB) {
+                        return -1;
+                    } else if (vehicleNameA > vehicleNameB) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
 
-                        return vehicleLengthA - vehicleLengthB;
+                case "vehicleLength":
+                    const vehicleLengthA = parseInt(a.vehicle.length);
+                    const vehicleLengthB = parseInt(b.vehicle.length);
 
-                    default:
-                        const nameA = a.name.toUpperCase();
-                        const nameB = b.name.toUpperCase();
+                    return vehicleLengthA - vehicleLengthB;
 
-                        if (nameA < nameB) {
-                            return -1;
-                        } else if (nameA > nameB) {
-                            return 1;
-                        } else {
-                            return 0;
-                        }
-                }
-            })
+                default:
+                    const nameA = a.name.toUpperCase().trim();
+                    const nameB = b.name.toUpperCase().trim();
+
+                    if (nameA < nameB) {
+                        return -1;
+                    } else if (nameA > nameB) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+            }
         });
+        return tempArray;
     }
 
     render() {
 
-        var customerInfo = this.props.customerInfo;
+        var customerInfo = this.state.customerInfoSorted !== null ? this.state.customerInfoSorted : this.props.customerInfo;
+        var id = 0;
 
         return (
             <div className="file-upload">
@@ -105,7 +116,7 @@ export default class CustomerTable extends Component {
                         <tbody>
                             {
                                 customerInfo.map(customer => {
-                                    return <tr key={customer.email}>
+                                    return <tr key={id++}>
                                         <td>{ customer.name }</td>
                                         <td>{ customer.email }</td>
                                         <td>{ customer.vehicle.type }</td>
