@@ -64,8 +64,8 @@ export default class CustomerTable extends Component {
                         }
 
                     case "vehicleLength":
-                        const vehicleLengthA = a.vehicle.length;
-                        const vehicleLengthB = b.vehicle.length;
+                        const vehicleLengthA = parseInt(a.vehicle.length);
+                        const vehicleLengthB = parseInt(b.vehicle.length);
 
                         return vehicleLengthA - vehicleLengthB;
 
@@ -87,7 +87,7 @@ export default class CustomerTable extends Component {
 
     render() {
 
-        var customerInfo = this.props.customerInfo;
+        var customerInfo = this.state.customerInfoSorted !== null ? this.state.customerInfoSorted : this.props.customerInfo;
 
         return (
             <div className="file-upload">
