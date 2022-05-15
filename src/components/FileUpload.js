@@ -22,7 +22,8 @@ export default class FileUpload extends Component {
         let fileData = new FormData();
         let frankenArray = [];
 
-        fileData.append("customerFile", this.state.file);
+        if (this.state.file.type === "text/plain") {
+            fileData.append("customerFile", this.state.file);
 
             fetch("http://localhost:9000/api/v1/customer",
             {
@@ -31,12 +32,18 @@ export default class FileUpload extends Component {
             })
             .then(response => response.json())
             .then(function(response) {
-                frankenArray = react.state.customerInfo !== null ? react.state.customerInfo.concat(response) : response;
-                react.setState({
-                    customerInfo: frankenArray
-                });
-
+                if (response) {
+                    frankenArray = react.state.customerInfo !== null ? react.state.customerInfo.concat(response) : response;
+                    react.setState({
+                        customerInfo: frankenArray
+                    });
+                }
+            }).catch(function(response) {
+                alert("Oh no, something seems to have gone wrong. Status code: "+ response.status);
             });
+        } else {
+            alert("Please make sure your file is a plain text file (.txt, .csv, etc.)");
+        }
     }
 
     render() {
