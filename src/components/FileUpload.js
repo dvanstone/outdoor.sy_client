@@ -22,7 +22,7 @@ export default class FileUpload extends Component {
         let fileData = new FormData();
         let frankenArray = [];
 
-        if (this.state.file.type === "text/plain") {
+        if (this.state.file.type === "text/plain" || this.state.file.type === "text/csv") {
             fileData.append("customerFile", this.state.file);
 
             fetch("http://localhost:9000/api/v1/customer",

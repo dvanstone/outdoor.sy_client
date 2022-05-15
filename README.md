@@ -28,6 +28,7 @@ Launches the test runner in the interactive watch mode.\
 ### navigate to Local port (ex: http://localhost:9000)
 
 ### Choose file to upload
+Can be either a text/plain file or text/csv (without header row)
 
 #### Click "Upload File" when desired file selected
 

@@ -38,8 +38,8 @@ export default class CustomerTable extends Component {
         tempArray.sort(function(a, b) {
             switch(sort) {
                 case "email":
-                    const emailA = a.email.toUpperCase();
-                    const emailB = b.email.toUpperCase();
+                    const emailA = a.email.toUpperCase().trim();
+                    const emailB = b.email.toUpperCase().trim();
 
                     if (emailA < emailB) {
                         return -1;
@@ -50,8 +50,8 @@ export default class CustomerTable extends Component {
                     }
 
                 case "vehicleType":
-                    const vehicleTypeA = a.vehicle.type.toUpperCase();
-                    const vehicleTypeB = b.vehicle.type.toUpperCase();
+                    const vehicleTypeA = a.vehicle.type.toUpperCase().trim();
+                    const vehicleTypeB = b.vehicle.type.toUpperCase().trim();
 
                     if (vehicleTypeA < vehicleTypeB) {
                         return -1;
@@ -62,8 +62,8 @@ export default class CustomerTable extends Component {
                     }
 
                 case "vehicleName":
-                    const vehicleNameA = a.vehicle.name.toUpperCase();
-                    const vehicleNameB = b.vehicle.name.toUpperCase();
+                    const vehicleNameA = a.vehicle.name.toUpperCase().trim();
+                    const vehicleNameB = b.vehicle.name.toUpperCase().trim();
 
                     if (vehicleNameA < vehicleNameB) {
                         return -1;
@@ -80,8 +80,8 @@ export default class CustomerTable extends Component {
                     return vehicleLengthA - vehicleLengthB;
 
                 default:
-                    const nameA = a.name.toUpperCase();
-                    const nameB = b.name.toUpperCase();
+                    const nameA = a.name.toUpperCase().trim();
+                    const nameB = b.name.toUpperCase().trim();
 
                     if (nameA < nameB) {
                         return -1;
