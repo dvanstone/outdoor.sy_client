@@ -49,7 +49,7 @@ export default class FileUpload extends Component {
     render() {
         return (
             <div className="file-upload">
-                <input type="file" onChange={ this.onFileChange }/>
+                <input type="file" onChange={ this.onFileChange } data-testid="fileUpload"/>
                 { this.state.file !== null &&
                     <div>
                         <button onClick={ this.onFileSubmit }>Upload File</button>
