@@ -46,3 +46,16 @@ Launches the test runner in the interactive watch mode.\
     * clicking on th's will change sorting
 
         * clicking on current sort's th will reverse the sort
+
+## Desired Improvements
+* appSettings-esque file to store API URL
+* additional Jest tests
+* improved responsiveness to buttons
+   * hover
+   * feedback on click
+   * show "Upload File" button as disabled and, when clicked, explains what the user needs to do to enable it
+* improve visuals on mobile-friendly version of table
+* table styling library to improve readability of CustomerTable component
+* group styling files together in a folder?
+   * more preference than anything
+
