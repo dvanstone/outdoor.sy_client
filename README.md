@@ -55,7 +55,14 @@ Launches the test runner in the interactive watch mode.\
    * feedback on click
    * show "Upload File" button as disabled and, when clicked, explains what the user needs to do to enable it
 * improve visuals on mobile-friendly version of table
+* employ stateless functional components
 * table styling library to improve readability of CustomerTable component
 * group styling files together in a folder?
    * more preference than anything
-
+* alternate methods for http request?
+   * use-http?
+   * react-query?
+   * create api layer for scalability & separation of concerns?
+      * move request logic out of component
+   * utilize service worker?
+      * caching would be worth toying around with
